@@ -6,10 +6,8 @@
       </div>
       <template v-for="product in products">
         <div :key="product._id" class="product">
-          <p class="product__name">产品名称：{{product.name}}</p>
-          <p class="product__description">介绍：{{product.description}}</p>
-          <p class="product__price">价格：{{product.price}}</p>
-          <p class="product.manufacturer">生产厂商：{{product.manufacturer}}</p>
+          <!-- 其他字段 -->
+          <p class="product.manufacturer">生产厂商：{{product.manufacturer.name}}</p>
           <img :src="product.image" alt="" class="product__image">
           <button @click="addToCart(product)">加入购物车</button>
         </div>
@@ -32,6 +30,11 @@
 <script>
 export default {
   name: 'product-list',
+  created() {
+    if (this.products.length === 0) {
+      this.$store.dispatch('allProducts')
+    }
+  },
   computed: {
     // a computed getter
     products() {
