@@ -38,7 +38,7 @@ export default {
   computed: {
     // a computed getter
     products() {
-      return this.$store.state.products;
+      return this.$store.getters.allProducts;
     }
   },
   methods: {
